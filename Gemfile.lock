@@ -1,9 +1,10 @@
 PATH
   remote: .
   specs:
-    sdr-view_components (0.1.0)
+    sdr_view_components (0.1.0)
       rails (>= 8.1.1)
       view_component
+      zeitwerk
 
 GEM
   remote: https://rubygems.org/
@@ -342,7 +343,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   rubocop-rspec_rails
-  sdr-view_components!
+  sdr_view_components!
   simplecov
   sqlite3
 

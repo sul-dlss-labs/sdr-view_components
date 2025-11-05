@@ -1,4 +1,4 @@
-# Sdr::ViewComponents
+# SdrViewComponents
 
 A rails gem to provide reusable view components used throughout the SDR applications and implement
 component library assets.
@@ -6,14 +6,14 @@ component library assets.
 ## Usage
 
 ```
-<% render Sdr::ViewComponent::....>
+<% render SdrViewComponent::....>
 ```
 
 ## Installation
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "sdr-view_components"
+gem "sdr_view_components"
 ```
 
 And then execute:
@@ -23,7 +23,7 @@ $ bundle
 
 Or install it yourself as:
 ```bash
-$ gem install sdr-view_components
+$ gem install sdr_view_components
 ```
 
 ## Contributing

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Sdr::ViewComponents::FooterComponent, type: :component do
+RSpec.describe SdrViewComponents::FooterComponent, type: :component do
   it 'renders footer' do
     render_inline(described_class.new)
 

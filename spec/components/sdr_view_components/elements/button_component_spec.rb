@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Sdr::ViewComponents::Elements::ButtonComponent, type: :component do
+RSpec.describe SdrViewComponents::Elements::ButtonComponent, type: :component do
   it 'renders the button label' do
     render_inline(described_class.new(label: 'Button label'))
     expect(page).to have_css('.btn', text: 'Button label')

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Sdr::ViewComponents::HeaderComponent, type: :component do
+RSpec.describe SdrViewComponents::HeaderComponent, type: :component do
   let(:current_user_sunetid) { 'testuser' }
 
   it 'renders header' do
