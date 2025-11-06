@@ -8,6 +8,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.view_component.show_previews = true
+
   # While tests run files are not watched, reloading is not necessary.
   config.enable_reloading = false
 
