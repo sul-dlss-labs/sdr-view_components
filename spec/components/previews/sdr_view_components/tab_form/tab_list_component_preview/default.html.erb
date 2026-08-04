@@ -1,0 +1,25 @@
+<% model = SdrViewComponents::TabForm::TabListComponentPreview::TabFormPreviewModel.new(title: 'Project overview') %>
+
+<%# The real <form> -- only holds hidden fields. Visible fields below associate with it via %>
+<%# the `form` HTML attribute (see TabbedFormBuilder), not DOM nesting. %>
+<%= render SdrViewComponents::TabForm::HiddenFieldsFormComponent.new(model:, id: 'preview-tabbed-form', url: '/example') %>
+
+<%= render SdrViewComponents::TabForm::TabListComponent.new(id: 'preview-tabbed-form', active_tab_name: :details) do |tab_list| %>
+  <% tab_list.with_tab(label: 'Details', tab_name: :details, mark_required: true) %>
+  <% tab_list.with_tab(label: 'Notes', tab_name: :notes) %>
+
+  <%# This builder is used only to render pane content; TabListComponent won't render this as a %>
+  <%# form. TabbedFormBuilder sets the `form` attribute on the fields it builds to the real %>
+  <%# form's id, so they submit correctly even though they aren't nested inside it. %>
+  <% form_with(model:, html: { id: 'preview-tabbed-form' }, url: '/example', builder: SdrViewComponents::TabForm::TabbedFormBuilder) do |form| %>
+    <% details_pane = SdrViewComponents::TabForm::PaneComponent.new(tab_name: :details, label: 'Details', help_text: 'The essentials.') %>
+    <% tab_list.with_pane(details_pane) do %>
+      <%= render SdrViewComponents::Forms::TextFieldComponent.new(form:, field_name: :title) %>
+    <% end %>
+
+    <% notes_pane = SdrViewComponents::TabForm::PaneComponent.new(tab_name: :notes, label: 'Notes') %>
+    <% tab_list.with_pane(notes_pane) do %>
+      <%= render SdrViewComponents::Forms::TextAreaComponent.new(form:, field_name: :notes) %>
+    <% end %>
+  <% end %>
+<% end %>
