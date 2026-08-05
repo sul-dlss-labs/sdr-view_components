@@ -50,4 +50,24 @@ RSpec.describe SdrViewComponents::TabForm::PaneComponent, type: :component do
       expect(page).to have_no_css('.pane-header')
     end
   end
+
+  context 'when mark_required is true and a label is provided' do
+    it 'marks the label as required' do
+      component = described_class.new(tab_name: :details, label: 'Details', mark_required: true)
+      component.active_tab_name = :details
+      render_inline(component) { 'Pane content' }
+
+      expect(page).to have_css('h2 span.required', text: '*')
+    end
+  end
+
+  context 'when mark_required is true but no label is provided' do
+    it 'does not render a pane header' do
+      component = described_class.new(tab_name: :details, mark_required: true)
+      component.active_tab_name = :details
+      render_inline(component) { 'Pane content' }
+
+      expect(page).to have_no_css('.pane-header')
+    end
+  end
 end

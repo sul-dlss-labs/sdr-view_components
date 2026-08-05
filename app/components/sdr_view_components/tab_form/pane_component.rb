@@ -10,19 +10,31 @@ module SdrViewComponents
 
       attr_accessor :active_tab_name
 
-      def initialize(tab_name:, label: nil, help_text: nil, tooltip: nil, pane_header_class: 'pane-header')
+      def initialize(tab_name:, label: nil, help_text: nil, tooltip: nil, pane_header_class: 'pane-header', # rubocop:disable Metrics/ParameterLists
+                     mark_required: false)
         @tab_name = tab_name
         @label = label
         @help_text = help_text
         @tooltip = tooltip
         @pane_header_class = pane_header_class
+        @mark_required = mark_required
         super()
       end
 
-      attr_reader :tab_name, :label, :help_text, :tooltip, :pane_header_class
+      attr_reader :tab_name, :help_text, :tooltip, :pane_header_class
 
       def selected?
         tab_name == active_tab_name
+      end
+
+      def mark_required?
+        @mark_required
+      end
+
+      def label
+        return unless @label
+
+        mark_label_required(label: @label, mark_required: mark_required?)
       end
 
       def classes
