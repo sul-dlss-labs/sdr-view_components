@@ -38,7 +38,7 @@ RSpec.describe SdrViewComponents::TabForm::TabListComponent, type: :component do
 
   it 'renders the tabbed navigation with tabs and panes' do
     render_inline(component)
-    expect(page).to have_css('.tabbable-panes')
+    expect(page).to have_css('.tab-form')
     expect(page).to have_css('.nav-link', count: 2)
     expect(page).to have_css('.nav-link.active', text: 'Tab 1')
     expect(page).to have_css('.nav-link', text: 'Tab 2')

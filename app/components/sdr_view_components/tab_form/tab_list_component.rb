@@ -26,9 +26,9 @@ module SdrViewComponents
       attr_reader :id, :active_tab_name
 
       def classes
-        # Provides tab-error, tabbable-panes as the static default classes
+        # Provides tab-error, tab-form as the static default classes
         # merged with any additional classes passed in.
-        merge_classes(%w[tab-error row tabbable-panes gx-4 gy-4 mb-5], @classes)
+        merge_classes(%w[tab-error row tab-form gx-4 gy-4 mb-5], @classes)
       end
 
       # `change` events fired by fields anywhere in the panes bubble up to this
