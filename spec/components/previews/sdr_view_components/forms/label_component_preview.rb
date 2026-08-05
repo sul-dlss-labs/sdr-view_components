@@ -11,6 +11,8 @@ module SdrViewComponents
       def with_tooltip; end
 
       def with_caption; end
+
+      def mark_required; end
       # @!endgroup
     end
   end
