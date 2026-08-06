@@ -46,6 +46,25 @@ import ToastController from "sdr_view_components/toast_controller"
 application.register("sdr-toast", ToastController)
 ```
 
+`SdrViewComponents::TabForm::TabListComponent` (see [Tab form components](#tab-form-components) below) similarly ships three controllers: `sdr_view_components/tab_error_controller`, `sdr_view_components/tab_link_controller`, and `sdr_view_components/tab_nav_controller`. Pin and register each the same way, using the `sdr-tab-error`, `sdr-tab-link`, and `sdr-tab-nav` identifiers respectively:
+
+```ruby
+pin "sdr_view_components/tab_error_controller", to: "sdr_view_components/tab_error_controller.js"
+pin "sdr_view_components/tab_link_controller", to: "sdr_view_components/tab_link_controller.js"
+pin "sdr_view_components/tab_nav_controller", to: "sdr_view_components/tab_nav_controller.js"
+```
+
+```javascript
+import { application } from "controllers/application"
+import TabErrorController from "sdr_view_components/tab_error_controller"
+import TabLinkController from "sdr_view_components/tab_link_controller"
+import TabNavController from "sdr_view_components/tab_nav_controller"
+
+application.register("sdr-tab-error", TabErrorController)
+application.register("sdr-tab-link", TabLinkController)
+application.register("sdr-tab-nav", TabNavController)
+```
+
 ## Usage
 
 ### Form components
@@ -92,6 +111,43 @@ Each of the supported components above uses the provided "basic" components:
 - SdrViewComponents::Forms::BasicTextFieldComponent
 
 At a minimum, each of these components must be provided wih the `form:` and `field_name:` parameters. Additionally, you can provide additional parameters that will be passed to the standard ActionView::Helpers::Tag.
+
+### Tab form components
+
+SdrViewComponents provides components for rendering a tabbed form, where a form's fields are split across tabs rather than shown all at once:
+
+- `SdrViewComponents::TabForm::TabListComponent` -- renders the tab navigation and tab panes. It doesn't render a `<form>` tag itself.
+- `SdrViewComponents::TabForm::TabComponent` -- a single tab, rendered via `TabListComponent#with_tab`.
+- `SdrViewComponents::TabForm::HiddenFieldsFormComponent` -- renders the one real `<form>` tag backing the tabbed form. It only contains hidden fields; the visible fields (rendered inside `TabListComponent`'s panes) associate with this form via the HTML `form` attribute rather than DOM nesting, since panes aren't necessarily inside the `<form>`.
+- `SdrViewComponents::TabForm::TabbedFormBuilder` -- a `FormBuilder` that automatically sets the `form` attribute (pointing at the `HiddenFieldsFormComponent`'s form id) on every field it builds.
+- `SdrViewComponents::TabForm::PaneComponent` -- generic tab-pane chrome (optional header/help/footer, Bootstrap `tab-pane` classes, and the target wiring the `sdr-tab-error` controller needs). Wrap it in an app-specific component if you need pane-level buttons or layout beyond what it provides.
+
+Panes passed to `TabListComponent#with_pane` can be any renderable object (a `ViewComponent`, a block, etc.) -- the caller supplies its own pane component, whether that's `PaneComponent` directly or a wrapper around it. If the pane responds to `active_tab_name=`, `TabListComponent` sets it centrally, so panes don't need `active_tab_name` passed to them individually.
+
+`TabListComponent` requires JavaScript to mark tabs containing invalid fields -- see the `sdr-tab-error` controller under [JavaScript](#javascript) above.
+
+A minimal example:
+
+```erb
+<%= render SdrViewComponents::TabForm::HiddenFieldsFormComponent.new(model: @work_form, id: 'tabbed_form', hidden_fields: %i[lock version]) %>
+
+<%= render SdrViewComponents::TabForm::TabListComponent.new(id: 'tabbed_form', active_tab_name: :details) do |tab_list| %>
+  <% tab_list.with_tab(label: 'Details', tab_name: :details, mark_required: true) %>
+  <% tab_list.with_tab(label: 'Notes', tab_name: :notes) %>
+
+  <% form_with(model: @work_form, html: { id: 'tabbed_form' }, builder: SdrViewComponents::TabForm::TabbedFormBuilder) do |form| %>
+    <% tab_list.with_pane(SdrViewComponents::TabForm::PaneComponent.new(tab_name: :details, label: 'Details')) do %>
+      <%= render SdrViewComponents::Forms::TextFieldComponent.new(form:, field_name: :title) %>
+    <% end %>
+
+    <% tab_list.with_pane(SdrViewComponents::TabForm::PaneComponent.new(tab_name: :notes, label: 'Notes')) do %>
+      <%= render SdrViewComponents::Forms::TextAreaComponent.new(form:, field_name: :notes) %>
+    <% end %>
+  <% end %>
+<% end %>
+```
+
+See the Lookbook preview for `SdrViewComponents::TabForm::TabListComponent` for a runnable example.
 
 ### General usage:
 

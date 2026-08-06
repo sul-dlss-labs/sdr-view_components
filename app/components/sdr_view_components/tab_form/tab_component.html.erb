@@ -1,0 +1,14 @@
+<%= tag.button(
+      class: classes,
+      id:,
+      data:,
+      type: 'button',
+      'aria-controls': pane_id,
+      'aria-selected': selected?,
+      'aria-labelledby': id,
+      'aria-role': 'tab',
+      tabindex: '0',
+      role: 'tab'
+    ) do %>
+  <%= tag.span(label) %>
+<% end %>

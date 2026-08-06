@@ -76,6 +76,90 @@
   font-weight: bold;
 }
 
+/* Tab form */
+.tab-form .nav-pills {
+  background-color: var(--stanford-10-black);
+}
+
+.tab-form .nav-pills .nav-link {
+  --bs-nav-link-padding-x: 0.5rem;
+
+  border-radius: unset;
+  display: block flex;
+  text-align: left;
+}
+
+.tab-form .nav-pills .nav-link:not(:first-child) {
+  border-top: var(--bs-border-width) var(--bs-border-style) rgb(var(--bs-white-rgb), 1);
+}
+
+.tab-form .nav-pills .nav-link:first-child {
+  border-top-left-radius: var(--bs-border-radius);
+  border-top-right-radius: var(--bs-border-radius);
+}
+
+.tab-form .nav-pills .nav-link:last-child {
+  border-bottom-left-radius: var(--bs-border-radius);
+  border-bottom-right-radius: var(--bs-border-radius);
+}
+
+.tab-form .nav-pills .nav-link:not(.active) {
+  color: var(--stanford-black);
+  padding-left: 1.7rem; /* Align the text of inactive nav items with the active one, roughly */
+}
+
+.tab-form .nav-pills .nav-link:not(.active):hover {
+  text-decoration: underline;
+}
+
+.tab-form .nav-pills .nav-link.active {
+  background-color: var(--stanford-black);
+  color: var(--bs-white);
+  font-weight: 700;
+}
+
+.tab-form .nav-pills .nav-link.active .required {
+  color: var(--bs-white);
+}
+
+.tab-form .nav-pills .nav-link.active::before {
+  display: inline-block;
+  margin-right: 2px;
+  font-family: bootstrap-icons;
+  vertical-align: -15%;
+  content: "\F138"; /* right arrow */
+}
+
+.tab-form .nav-pills .nav-link.is-invalid {
+  color: var(--bs-danger-text-emphasis);
+}
+
+.tab-form .nav-pills .nav-link.is-invalid.active {
+  background-color: white;
+  border: 2px solid var(--stanford-black);
+}
+
+.tab-form .nav-pills .nav-link.is-invalid::after {
+  margin-left: 10px;
+  display: inline-block;
+  font-family: bootstrap-icons;
+  font-weight: normal;
+  vertical-align: -15%;
+  content: "\F33A"; /* exclamation triangle fill */
+}
+
+.tab-form .pane-header {
+  padding-bottom: 40px;
+}
+
+.tab-form .pane-section {
+  padding-bottom: 40px;
+}
+
+.tab-form .pane-section:last-child {
+  padding-bottom: 80px;
+}
+
 /* Tables */
 table.table-h3 caption {
   padding: .25rem;
