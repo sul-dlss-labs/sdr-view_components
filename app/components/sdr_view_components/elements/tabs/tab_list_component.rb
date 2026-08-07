@@ -12,14 +12,16 @@ module SdrViewComponents
         renders_many :panes, Elements::Tabs::PaneComponent
 
         # @param classes [Array<String>, String] additional classes for the tab list.
+        # @param content_classes [Array<String>, String] additional classes for the tab content container.
         # @param variant [Symbol] the visual style of the tabs (:default or :underline).
         # @param collapse_below [Symbol, nil] if given, the tabs are replaced with a `<select>`
         #   below this Bootstrap breakpoint (one of :sm, :md, :lg, :xl, :xxl). The tabs remain
         #   fully functional (the `<select>` drives the same Bootstrap tab JavaScript) -- this
         #   only changes how they're presented at narrow viewports. Leave nil (the default) to
         #   always render the tabs.
-        def initialize(classes: [], variant: :default, collapse_below: nil)
+        def initialize(classes: [], content_classes: [], variant: :default, collapse_below: nil)
           @classes = classes
+          @content_classes = content_classes
           @variant = variant
           @collapse_below = collapse_below
 
@@ -41,6 +43,10 @@ module SdrViewComponents
 
         def select_classes
           merge_classes('form-select', "d-#{@collapse_below}-none", @classes)
+        end
+
+        def content_classes
+          merge_classes('tab-content', @content_classes)
         end
 
         private

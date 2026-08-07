@@ -63,6 +63,17 @@ RSpec.describe SdrViewComponents::Elements::Tabs::TabListComponent, type: :compo
     end
   end
 
+  context 'when content_classes is given' do
+    it 'merges the additional classes onto the tab content container' do
+      render_inline(described_class.new(content_classes: %w[extra-class another-class])) do |component|
+        component.with_tab(label: 'Tab 1', id: 'tab-1', pane_id: 'pane-1', active: true)
+        component.with_pane(id: 'pane-1', tab_id: 'tab-1', active: true) { '<p>Content 1</p>'.html_safe }
+      end
+
+      expect(page).to have_css('div.tab-content.extra-class.another-class')
+    end
+  end
+
   context 'when collapse_below is invalid' do
     it 'raises an error' do
       expect { described_class.new(collapse_below: :xs) }.to raise_error(ArgumentError, 'Invalid collapse_below: xs')

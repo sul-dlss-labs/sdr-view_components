@@ -16,6 +16,6 @@
 
 <%= header %>
 
-<div class="tab-content">
+<%= tag.div class: content_classes do %>
   <% panes.each do |pane| %><%= pane %><% end %>
-</div>
+<% end %>
