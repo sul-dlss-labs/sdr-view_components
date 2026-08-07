@@ -40,7 +40,7 @@ module SdrViewComponents
         end
 
         def select_classes
-          merge_classes('form-select', "d-#{@collapse_below}-none")
+          merge_classes('form-select', "d-#{@collapse_below}-none", @classes)
         end
 
         private
