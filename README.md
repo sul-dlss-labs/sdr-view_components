@@ -65,6 +65,19 @@ application.register("sdr-tab-link", TabLinkController)
 application.register("sdr-tab-nav", TabNavController)
 ```
 
+`SdrViewComponents::Elements::Tabs::TabListComponent`'s `collapse_below` option (see [General usage](#general-usage) below) ships `sdr_view_components/tab_select_controller`, registered as `sdr-tab-select`:
+
+```ruby
+pin "sdr_view_components/tab_select_controller", to: "sdr_view_components/tab_select_controller.js"
+```
+
+```javascript
+import { application } from "controllers/application"
+import TabSelectController from "sdr_view_components/tab_select_controller"
+
+application.register("sdr-tab-select", TabSelectController)
+```
+
 ## Usage
 
 ### Form components
@@ -150,6 +163,23 @@ A minimal example:
 See the Lookbook preview for `SdrViewComponents::TabForm::TabListComponent` for a runnable example.
 
 ### General usage:
+
+`SdrViewComponents::Elements::Tabs::TabListComponent` accepts a `collapse_below:` option (one of `:sm`, `:md`, `:lg`, `:xl`, `:xxl`). When given, the tabs are replaced with a `<select>` below that Bootstrap breakpoint instead of wrapping or scrolling -- the `<select>` drives the same Bootstrap tab JavaScript as the tabs, so panes switch the same way regardless of which control is visible. Leave it unset (the default) to always render the tabs. This requires the `sdr-tab-select` controller -- see [JavaScript](#javascript) above.
+
+```erb
+<%= render SdrViewComponents::Elements::Tabs::TabListComponent.new(variant: :underline, collapse_below: :xl) do |tab_list| %>
+  <% tab_list.with_tab(label: 'Details', id: 'details-tab', pane_id: 'details-pane', active: true) %>
+  <% tab_list.with_tab(label: 'History', id: 'history-tab', pane_id: 'history-pane') %>
+
+  <% tab_list.with_pane(id: 'details-pane', tab_id: 'details-tab', active: true) do %>
+    <p>Details pane content.</p>
+  <% end %>
+
+  <% tab_list.with_pane(id: 'history-pane', tab_id: 'history-tab') do %>
+    <p>History pane content.</p>
+  <% end %>
+<% end %>
+```
 
 ```
 <% render SdrViewComponent::....>
