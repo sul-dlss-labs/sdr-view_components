@@ -4,13 +4,14 @@ module SdrViewComponents
   module Elements
     # Applies an h# component with the expected styling.
     class HeadingComponent < BaseComponent
-      def initialize(level:, text: nil, variant: nil, classes: [])
+      def initialize(level:, text: nil, variant: nil, classes: [], **options)
         raise ArgumentError, 'Invalid level' unless %i[h1 h2 h3 h4 h5 h6].include?(level.to_sym)
 
         @level = level
         @variant = variant
         @classes = classes
         @text = text # Provide text or content
+        @options = options
         super()
       end
 
@@ -22,7 +23,7 @@ module SdrViewComponents
       def call
         return unless tag.respond_to?(@level)
 
-        tag.public_send(@level, class: classes) do
+        tag.public_send(@level, class: classes, **@options) do
           @text || content
         end
       end
