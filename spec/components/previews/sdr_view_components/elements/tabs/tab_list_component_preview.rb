@@ -10,6 +10,8 @@ module SdrViewComponents
         # @!endgroup
 
         def with_header; end
+
+        def collapsible; end
       end
     end
   end
