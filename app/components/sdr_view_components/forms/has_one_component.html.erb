@@ -1,0 +1,7 @@
+<%= render SdrViewComponents::Forms::FieldsetComponent.new(**fieldset_args) do %>
+  <%= tag.div class: 'mb-3' do %>
+    <%= form.fields_for field_name do |nested_form| %>
+      <%= render form_component.new(form: nested_form, **form_component_args) %>
+    <% end %>
+  <% end %>
+<% end %>
