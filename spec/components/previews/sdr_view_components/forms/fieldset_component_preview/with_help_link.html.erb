@@ -1,0 +1,9 @@
+<%= render SdrViewComponents::Forms::FieldsetComponent.new(label: 'Contributors') do |component| %>
+  <% component.with_help_link do %>
+    <a href="#" class="ms-2">What is a contributor?</a>
+  <% end %>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="contributor1" name="contributor1">
+    <label class="form-check-label" for="contributor1">Jane Stanford</label>
+  </div>
+<% end %>

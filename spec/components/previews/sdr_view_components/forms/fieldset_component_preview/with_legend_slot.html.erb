@@ -1,0 +1,9 @@
+<%= render SdrViewComponents::Forms::FieldsetComponent.new do |component| %>
+  <% component.with_legend do %>
+    <span class="form-label fw-bold">Contributors <em>(custom legend markup)</em></span>
+  <% end %>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="contributor1" name="contributor1">
+    <label class="form-check-label" for="contributor1">Jane Stanford</label>
+  </div>
+<% end %>
