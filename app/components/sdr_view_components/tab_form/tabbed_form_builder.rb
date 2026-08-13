@@ -14,7 +14,7 @@ module SdrViewComponents
     # created via `fields_for`, by falling back to the parent builder's `id`. Rails' `fields_for`
     # doesn't otherwise propagate the `html: { id: }` option to nested builders.
     class TabbedFormBuilder < ActionView::Helpers::FormBuilder
-      FIELD_METHODS = %i[text_field email_field textarea text_area hidden_field file_field radio_button checkbox
+      FIELD_METHODS = %i[text_field email_field textarea text_area hidden_field file_field radio_button check_box
                          date_field].freeze
 
       FIELD_METHODS.each do |field_method|

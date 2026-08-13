@@ -125,6 +125,10 @@ Each of the supported components above uses the provided "basic" components:
 
 At a minimum, each of these components must be provided wih the `form:` and `field_name:` parameters. Additionally, you can provide additional parameters that will be passed to the standard ActionView::Helpers::Tag.
 
+#### Fieldset component
+
+`SdrViewComponents::Forms::FieldsetComponent` renders a `<fieldset>` for grouping related fields (e.g. a set of checkboxes) that don't belong to a single bound form field. It supports a `label:` (or a `legend` slot for custom markup), `tooltip:`, `mark_required:`, `help_text:`, and a `help_link` slot. Any other keyword arguments (`id:`, `data:`, `aria:`, etc.) are passed through to the `<fieldset>` tag.
+
 ### Tab form components
 
 SdrViewComponents provides components for rendering a tabbed form, where a form's fields are split across tabs rather than shown all at once:
