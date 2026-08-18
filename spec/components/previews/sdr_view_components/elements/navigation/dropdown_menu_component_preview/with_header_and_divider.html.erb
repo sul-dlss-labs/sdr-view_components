@@ -4,13 +4,13 @@
       <%= render SdrViewComponents::Elements::Navigation::DropdownHeaderComponent.new(text: 'Section 1') %>
     <% end %>
     <% dropdown.with_item do %>
-      <%= link_to 'Action', '#', class: 'dropdown-item' %>
+      <%= render SdrViewComponents::Elements::Navigation::DropdownLinkComponent.new(label: 'Action', link: '#') %>
     <% end %>
     <% dropdown.with_item do %>
       <%= render SdrViewComponents::Elements::Navigation::DropdownDividerComponent.new %>
     <% end %>
     <% dropdown.with_item do %>
-      <%= link_to 'Another action', '#', class: 'dropdown-item' %>
+      <%= render SdrViewComponents::Elements::Navigation::DropdownLinkComponent.new(label: 'Another action', link: '#') %>
     <% end %>
   <% end %>
 </ul>

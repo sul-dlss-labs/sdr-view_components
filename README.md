@@ -194,7 +194,8 @@ See the Lookbook preview for `SdrViewComponents::TabForm::TabListComponent` for 
 SdrViewComponents provides components for building navigation bar items and dropdown menus:
 
 - `SdrViewComponents::Elements::Navigation::NavItemComponent` -- a single navigation link (or plain text, if no `path:` is given).
-- `SdrViewComponents::Elements::Navigation::DropdownMenuComponent` -- a Bootstrap dropdown menu. Items are added via `with_item`, and can be any renderable object -- typically a `link_to ..., class: 'dropdown-item'`, or one of the components below.
+- `SdrViewComponents::Elements::Navigation::DropdownMenuComponent` -- a Bootstrap dropdown menu. Items are added via `with_item`, and can be any renderable object -- typically one of the components below.
+- `SdrViewComponents::Elements::Navigation::DropdownLinkComponent` -- a link within a dropdown menu (renders with the `dropdown-item` class via `link_to`). Accepts `label:`, `link:`, `classes:`, `disabled:` (adds the `disabled` class), and any additional options passed on to `link_to`.
 - `SdrViewComponents::Elements::Navigation::DropdownHeaderComponent` -- a non-interactive section label within a dropdown menu.
 - `SdrViewComponents::Elements::Navigation::DropdownDividerComponent` -- a horizontal divider between groups of items within a dropdown menu.
 
@@ -207,13 +208,13 @@ SdrViewComponents provides components for building navigation bar items and drop
       <%= render SdrViewComponents::Elements::Navigation::DropdownHeaderComponent.new(text: 'Section 1') %>
     <% end %>
     <% dropdown.with_item do %>
-      <%= link_to 'Action', '#', class: 'dropdown-item' %>
+      <%= render SdrViewComponents::Elements::Navigation::DropdownLinkComponent.new(label: 'Action', link: '#') %>
     <% end %>
     <% dropdown.with_item do %>
       <%= render SdrViewComponents::Elements::Navigation::DropdownDividerComponent.new %>
     <% end %>
     <% dropdown.with_item do %>
-      <%= link_to 'Another action', '#', class: 'dropdown-item' %>
+      <%= render SdrViewComponents::Elements::Navigation::DropdownLinkComponent.new(label: 'Another action', link: '#') %>
     <% end %>
   <% end %>
 </ul>

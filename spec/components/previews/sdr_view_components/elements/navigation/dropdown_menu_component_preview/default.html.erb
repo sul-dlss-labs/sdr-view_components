@@ -1,10 +1,10 @@
 <ul class="navbar-nav">
   <%= render SdrViewComponents::Elements::Navigation::DropdownMenuComponent.new(text: 'Options') do |dropdown| %>
     <% dropdown.with_item do %>
-      <%= link_to 'Action', '#', class: 'dropdown-item' %>
+      <%= render SdrViewComponents::Elements::Navigation::DropdownLinkComponent.new(label: 'Action', link: '#') %>
     <% end %>
     <% dropdown.with_item do %>
-      <%= link_to 'Another action', '#', class: 'dropdown-item' %>
+      <%= render SdrViewComponents::Elements::Navigation::DropdownLinkComponent.new(label: 'Another action', link: '#') %>
     <% end %>
   <% end %>
 </ul>
