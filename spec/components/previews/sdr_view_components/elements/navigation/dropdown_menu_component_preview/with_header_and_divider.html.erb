@@ -1,0 +1,16 @@
+<ul class="navbar-nav">
+  <%= render SdrViewComponents::Elements::Navigation::DropdownMenuComponent.new(text: 'Options') do |dropdown| %>
+    <% dropdown.with_item do %>
+      <%= render SdrViewComponents::Elements::Navigation::DropdownHeaderComponent.new(text: 'Section 1') %>
+    <% end %>
+    <% dropdown.with_item do %>
+      <%= link_to 'Action', '#', class: 'dropdown-item' %>
+    <% end %>
+    <% dropdown.with_item do %>
+      <%= render SdrViewComponents::Elements::Navigation::DropdownDividerComponent.new %>
+    <% end %>
+    <% dropdown.with_item do %>
+      <%= link_to 'Another action', '#', class: 'dropdown-item' %>
+    <% end %>
+  <% end %>
+</ul>

@@ -189,6 +189,36 @@ See the Lookbook preview for `SdrViewComponents::TabForm::TabListComponent` for 
 <% render SdrViewComponent::....>
 ```
 
+### Navigation components
+
+SdrViewComponents provides components for building navigation bar items and dropdown menus:
+
+- `SdrViewComponents::Elements::Navigation::NavItemComponent` -- a single navigation link (or plain text, if no `path:` is given).
+- `SdrViewComponents::Elements::Navigation::DropdownMenuComponent` -- a Bootstrap dropdown menu. Items are added via `with_item`, and can be any renderable object -- typically a `link_to ..., class: 'dropdown-item'`, or one of the components below.
+- `SdrViewComponents::Elements::Navigation::DropdownHeaderComponent` -- a non-interactive section label within a dropdown menu.
+- `SdrViewComponents::Elements::Navigation::DropdownDividerComponent` -- a horizontal divider between groups of items within a dropdown menu.
+
+```erb
+<ul class="navbar-nav">
+  <%= render SdrViewComponents::Elements::Navigation::NavItemComponent.new(text: 'Home', path: '/') %>
+
+  <%= render SdrViewComponents::Elements::Navigation::DropdownMenuComponent.new(text: 'Options') do |dropdown| %>
+    <% dropdown.with_item do %>
+      <%= render SdrViewComponents::Elements::Navigation::DropdownHeaderComponent.new(text: 'Section 1') %>
+    <% end %>
+    <% dropdown.with_item do %>
+      <%= link_to 'Action', '#', class: 'dropdown-item' %>
+    <% end %>
+    <% dropdown.with_item do %>
+      <%= render SdrViewComponents::Elements::Navigation::DropdownDividerComponent.new %>
+    <% end %>
+    <% dropdown.with_item do %>
+      <%= link_to 'Another action', '#', class: 'dropdown-item' %>
+    <% end %>
+  <% end %>
+</ul>
+```
+
 ## Component library version
 The [component-library](https://github.com/sul-dlss/component-library/) version is set in `lib/sdr_view_components/configuration.rb`.
 
