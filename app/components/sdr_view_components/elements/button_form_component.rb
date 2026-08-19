@@ -5,7 +5,7 @@ module SdrViewComponents
     # Component for a button that is wrapped in a form
     class ButtonFormComponent < BaseComponent
       def initialize(link:, label: nil, variant: :primary, classes: [], method: :get, confirm: nil, # rubocop:disable Metrics/ParameterLists
-                     top: true, data: {})
+                     top: true, data: {}, disabled: false)
         @link = link
         @label = label
         @variant = variant
@@ -14,6 +14,7 @@ module SdrViewComponents
         @confirm = confirm
         @top = top
         @data = data
+        @disabled = disabled
         super()
       end
 
@@ -21,7 +22,7 @@ module SdrViewComponents
 
       def call
         button_to(link, method: @method,
-                        class: ComponentSupport::ButtonSupport.classes(variant: @variant, classes:),
+                        class: ComponentSupport::ButtonSupport.classes(variant: @variant, classes:, disabled: @disabled),
                         form: { data: }) do
           @label || content
         end

@@ -24,6 +24,20 @@ RSpec.describe SdrViewComponents::Elements::IconButtonComponent, type: :componen
     end
   end
 
+  context 'when disabled' do
+    it 'renders the button with the disabled class' do
+      render_inline(described_class.new(icon: :delete, label: 'Clear', disabled: true))
+      expect(page).to have_css('.btn.disabled')
+    end
+  end
+
+  context 'when not disabled' do
+    it 'renders the button without the disabled class' do
+      render_inline(described_class.new(icon: :delete, label: 'Clear', disabled: false))
+      expect(page).to have_no_css('.btn.disabled')
+    end
+  end
+
   context 'with an unknown icon' do
     it 'raises UnknownComponentIcon' do
       expect { render_inline(described_class.new(icon: :nonexistent, label: 'Clear')) }

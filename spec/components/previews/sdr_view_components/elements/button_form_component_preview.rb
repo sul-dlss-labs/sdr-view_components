@@ -89,6 +89,26 @@ module SdrViewComponents
       end
       # @!endgroup
 
+      # @!group Disabled State
+      def enabled
+        render SdrViewComponents::Elements::ButtonFormComponent.new(
+          link: '/action',
+          label: 'Enabled Button',
+          variant: :primary,
+          disabled: false
+        )
+      end
+
+      def disabled
+        render SdrViewComponents::Elements::ButtonFormComponent.new(
+          link: '/action',
+          label: 'Disabled Button',
+          variant: :primary,
+          disabled: true
+        )
+      end
+      # @!endgroup
+
       def default
         render SdrViewComponents::Elements::ButtonFormComponent.new(link: '/', label: 'Form Button')
       end

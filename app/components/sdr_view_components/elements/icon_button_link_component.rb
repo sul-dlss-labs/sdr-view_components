@@ -4,17 +4,18 @@ module SdrViewComponents
   module Elements
     # Component for a button which is an icon
     class IconButtonLinkComponent < BaseComponent
-      def initialize(icon:, label:, classes: [], icon_classes: [], link: nil, **options) # rubocop:disable Metrics/ParameterLists
+      def initialize(icon:, label:, classes: [], icon_classes: [], link: nil, disabled: false, **options) # rubocop:disable Metrics/ParameterLists
         @icon = icon
         @label = label
         @classes = classes
         @link = link
         @options = options
         @icon_classes = icon_classes
+        @disabled = disabled
         super()
       end
 
-      attr_reader :label, :link, :options
+      attr_reader :label, :link, :options, :disabled
 
       def classes
         merge_classes(%w[border border-0], @classes)

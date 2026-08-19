@@ -30,4 +30,18 @@ RSpec.describe SdrViewComponents::Elements::ButtonLinkComponent, type: :componen
       expect(page).to have_css('a.btn.btn-primary.class1.class2')
     end
   end
+
+  context 'when disabled' do
+    it 'renders the button link with the disabled class' do
+      render_inline(described_class.new(link:, disabled: true))
+      expect(page).to have_css('a.btn.disabled')
+    end
+  end
+
+  context 'when not disabled' do
+    it 'renders the button link without the disabled class' do
+      render_inline(described_class.new(link:, disabled: false))
+      expect(page).to have_no_css('a.btn.disabled')
+    end
+  end
 end
