@@ -4,7 +4,8 @@ module SdrViewComponents
   module Elements
     # Component for a button that is a link
     class ButtonLinkComponent < BaseComponent
-      def initialize(link:, label: nil, variant: :primary, classes: [], bordered: true, size: nil, **options) # rubocop:disable Metrics/ParameterLists
+      def initialize(link:, label: nil, variant: :primary, classes: [], bordered: true, size: nil, # rubocop:disable Metrics/ParameterLists
+                     disabled: false, **options)
         @link = link
         @label = label
         @variant = variant
@@ -12,6 +13,7 @@ module SdrViewComponents
         @classes = classes
         @bordered = bordered
         @size = size
+        @disabled = disabled
         super()
       end
 
@@ -19,7 +21,8 @@ module SdrViewComponents
 
       def call
         link_to(link, class: ComponentSupport::ButtonSupport.classes(classes: @classes, variant: @variant,
-                                                                     bordered: @bordered, size: @size),
+                                                                     bordered: @bordered, size: @size,
+                                                                     disabled: @disabled),
                       **@options) do
           label || content
         end

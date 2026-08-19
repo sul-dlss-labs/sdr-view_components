@@ -60,4 +60,19 @@ RSpec.describe SdrViewComponents::Elements::ButtonFormComponent, type: :componen
       expect(page).to have_css('form[data-turbo-foo="bar"][data-turbo-frame="_top"]')
     end
   end
+
+  context 'when disabled' do
+    it 'renders the button with the disabled class' do
+      render_inline(described_class.new(link:, label: 'Submit', disabled: true))
+      expect(page).to have_button('Submit', class: 'btn btn-primary disabled')
+    end
+  end
+
+  context 'when not disabled' do
+    it 'renders the button without the disabled class' do
+      render_inline(described_class.new(link:, label: 'Submit', disabled: false))
+      expect(page).to have_button('Submit', class: 'btn btn-primary')
+      expect(page).to have_no_button(class: 'disabled')
+    end
+  end
 end

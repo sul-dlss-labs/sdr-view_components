@@ -4,10 +4,11 @@ module SdrViewComponents
   module Elements
     # Component for a button which is an icon
     class IconButtonComponent < BaseComponent
-      def initialize(icon:, label:, classes: [], **options)
+      def initialize(icon:, label:, classes: [], disabled: false, **options)
         @icon = icon
         @label = label
         @classes = classes
+        @disabled = disabled
         @options = options
         super()
       end
@@ -16,7 +17,7 @@ module SdrViewComponents
         raise SdrViewComponents::Error::UnknownComponentIcon, "Unknown icon type: #{@icon}" unless button_icon?
       end
 
-      attr_reader :label, :options
+      attr_reader :label, :options, :disabled
 
       def classes
         merge_classes(%w[border border-0], @classes)
