@@ -4,7 +4,7 @@ module SdrViewComponents
   module Elements
     # Component for a button that is wrapped in a form
     class ButtonFormComponent < BaseComponent
-      def initialize(link:, label: nil, variant: :primary, classes: [], method: :get, confirm: nil, # rubocop:disable Metrics/ParameterLists
+      def initialize(link:, label: nil, variant: :primary, classes: [], method: :get, confirm: nil, # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength
                      top: true, data: {}, disabled: false, params: {})
         @link = link
         @label = label

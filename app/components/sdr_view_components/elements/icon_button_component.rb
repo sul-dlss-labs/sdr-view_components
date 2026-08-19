@@ -4,10 +4,11 @@ module SdrViewComponents
   module Elements
     # Component for a button which is an icon
     class IconButtonComponent < BaseComponent
-      def initialize(icon:, label:, classes: [], disabled: false, **options)
+      def initialize(icon:, label:, classes: [], icon_classes: [], disabled: false, **options) # rubocop:disable Metrics/ParameterLists
         @icon = icon
         @label = label
         @classes = classes
+        @icon_classes = icon_classes
         @disabled = disabled
         @options = options
         super()
@@ -24,7 +25,7 @@ module SdrViewComponents
       end
 
       def button_icon
-        helpers.public_send(:"#{@icon}_icon")
+        helpers.public_send(:"#{@icon}_icon", classes: @icon_classes)
       end
 
       private
