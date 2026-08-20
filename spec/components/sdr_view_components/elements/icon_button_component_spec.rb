@@ -24,6 +24,13 @@ RSpec.describe SdrViewComponents::Elements::IconButtonComponent, type: :componen
     end
   end
 
+  context 'with icon_classes' do
+    it 'renders the icon with the additional classes' do
+      render_inline(described_class.new(icon: :delete, label: 'Clear', icon_classes: %w[icon-class]))
+      expect(page).to have_css('i.bi.bi-trash.icon-class')
+    end
+  end
+
   context 'when disabled' do
     it 'renders the button with the disabled class' do
       render_inline(described_class.new(icon: :delete, label: 'Clear', disabled: true))

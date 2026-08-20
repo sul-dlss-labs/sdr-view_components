@@ -75,4 +75,12 @@ RSpec.describe SdrViewComponents::Elements::ButtonFormComponent, type: :componen
       expect(page).to have_no_button(class: 'disabled')
     end
   end
+
+  context 'with params' do
+    it 'renders the button form with hidden fields for the params' do
+      render_inline(described_class.new(link:, label: 'Submit', params: { foo: 'bar', baz: 'qux' }))
+      expect(page).to have_field('foo', type: 'hidden', with: 'bar')
+      expect(page).to have_field('baz', type: 'hidden', with: 'qux')
+    end
+  end
 end

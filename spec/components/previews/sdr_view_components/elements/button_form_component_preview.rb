@@ -109,6 +109,17 @@ module SdrViewComponents
       end
       # @!endgroup
 
+      # @!group Params
+      def with_params
+        render SdrViewComponents::Elements::ButtonFormComponent.new(
+          link: '/action',
+          label: 'Submit with Params',
+          variant: :primary,
+          params: { foo: 'bar', baz: 'qux' }
+        )
+      end
+      # @!endgroup
+
       def default
         render SdrViewComponents::Elements::ButtonFormComponent.new(link: '/', label: 'Form Button')
       end

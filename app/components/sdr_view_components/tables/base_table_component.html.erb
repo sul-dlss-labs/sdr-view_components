@@ -1,7 +1,7 @@
 <% @table_content = capture do %>
   <%= tag.table class: classes, 'aria-label': label, **@table_options do %>
     <% if show_label? %>
-      <caption><%= label || caption %></caption>
+      <caption><%= caption || label %></caption>
     <% end %>
     <% if headers? %>
       <%= tag.thead class: head_classes do %>

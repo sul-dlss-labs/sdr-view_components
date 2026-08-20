@@ -24,6 +24,11 @@ module SdrViewComponents
                                                                     disabled: true)
       end
       # @!endgroup
+
+      def with_icon_classes
+        render SdrViewComponents::Elements::IconButtonComponent.new(icon: :delete, label: 'Delete item',
+                                                                    icon_classes: %w[fs-4])
+      end
     end
   end
 end
