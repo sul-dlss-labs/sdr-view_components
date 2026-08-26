@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe SdrViewComponents::Elements::IconButtonComponent, type: :component do
   it 'renders the button label' do
     render_inline(described_class.new(icon: :delete, label: 'Clear'))
-    expect(page).to have_css('.btn.btn-outline-primary')
+    expect(page).to have_css('.btn.btn-outline-primary.icon-button')
     expect(page).to have_css('span.visually-hidden', text: 'Clear')
     expect(page).to have_css('i.bi.bi-trash')
   end

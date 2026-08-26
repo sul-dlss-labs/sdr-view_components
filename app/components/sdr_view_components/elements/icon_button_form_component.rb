@@ -38,7 +38,7 @@ module SdrViewComponents
       end
 
       def classes
-        merge_classes(%w[border border-0], @classes)
+        merge_classes(%w[icon-button border border-0], @classes)
       end
 
       def data
