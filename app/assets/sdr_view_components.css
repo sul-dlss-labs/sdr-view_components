@@ -47,6 +47,9 @@
 /* Icon buttons */
 .icon-button.btn {
   --bs-btn-bg: transparent;
+
+  /* Avoids a background flash when the button is briefly disabled during form submission. */
+  --bs-btn-disabled-bg: transparent;
 }
 
 /* Banner */
