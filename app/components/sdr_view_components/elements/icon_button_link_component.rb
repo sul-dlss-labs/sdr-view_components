@@ -18,7 +18,7 @@ module SdrViewComponents
       attr_reader :label, :link, :options, :disabled
 
       def classes
-        merge_classes(%w[border border-0], @classes)
+        merge_classes(%w[icon-button border border-0], @classes)
       end
 
       def button_icon

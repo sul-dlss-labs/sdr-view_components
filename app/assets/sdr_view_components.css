@@ -44,6 +44,11 @@
   content: "\F633";
 }
 
+/* Icon buttons */
+.icon-button.btn {
+  --bs-btn-bg: transparent;
+}
+
 /* Banner */
 .banner.alert a.btn-primary {
   color: white;

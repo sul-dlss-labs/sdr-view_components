@@ -8,7 +8,7 @@ RSpec.describe SdrViewComponents::Elements::IconButtonFormComponent, type: :comp
   it 'renders the icon button form' do
     render_inline(described_class.new(link:, icon: :delete, label: 'Delete'))
     form = page.find('form[data-turbo-frame="_top"][method="get"][action="/path"]')
-    expect(form).to have_button(class: 'btn btn-outline-primary', type: 'submit')
+    expect(form).to have_button(class: 'btn btn-outline-primary icon-button', type: 'submit')
     expect(form).to have_css('span.visually-hidden', text: 'Delete')
     expect(form).to have_css('i.bi.bi-trash')
   end
@@ -23,7 +23,7 @@ RSpec.describe SdrViewComponents::Elements::IconButtonFormComponent, type: :comp
   context 'with classes' do
     it 'renders the icon button form' do
       render_inline(described_class.new(link:, icon: :delete, label: 'Delete', classes: %w[class1 class2]))
-      expect(page).to have_button(class: 'btn btn-outline-primary border border-0 class1 class2')
+      expect(page).to have_button(class: 'btn btn-outline-primary icon-button border border-0 class1 class2')
     end
   end
 

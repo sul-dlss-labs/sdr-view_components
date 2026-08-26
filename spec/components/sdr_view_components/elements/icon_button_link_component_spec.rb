@@ -7,6 +7,7 @@ RSpec.describe SdrViewComponents::Elements::IconButtonLinkComponent, type: :comp
     render_inline(described_class.new(icon: :download, label: 'Download', link: 'http://www.example.com'))
 
     expect(page).to have_link('Download', href: 'http://www.example.com')
+    expect(page).to have_css('a.icon-button')
     expect(page).to have_css('i.bi.bi-download')
   end
 
